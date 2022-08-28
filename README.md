@@ -1,7 +1,7 @@
 # Facebook-Find-and-Comment
 ## ABOUT
 ### Why did I create this project?
-In oder to advertsing purpose on Facebook posts, I decided to start this project.
+In order to advertsing purpose on Facebook posts, I decided to start this project.
 ### How it works?
 The automation will read and find the content of each post if it contains matched texts from [textFiles/regex_find.txt](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/textFiles/regex_find.txt).
 If it does, the bot will comment [textFiles/comment.txt](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/textFiles/comment.txt) and post it automatically.
