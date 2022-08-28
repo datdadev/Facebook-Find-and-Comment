@@ -7,7 +7,7 @@ The automation will read and find the content of each post if it contains matche
 If it does, the bot will comment [textFiles/comment.txt](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/textFiles/comment.txt) and post it automatically.
 Then the program looped *REFRESH_TIME* times - setted in [.env](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/sources.env).
 ## INSTALLATION
--Install project's dependencies in [requirements.txt](https://github.com/datdadev/Auto-Find-and-Comment/blob/main/requirements.txt) by running command below in your terminal:
+- Install project's dependencies in [requirements.txt](https://github.com/datdadev/Auto-Find-and-Comment/blob/main/requirements.txt) by running command below in your terminal:
 
 ```bash
 pip install -r requirements.txt
