@@ -12,7 +12,7 @@ Install project's dependencies in [requirements.txt](https://github.com/datdadev
 ```bash
 pip install -r requirements.txt
 ```
-Setting environment file for project by rename *source.env* to *.env* by using command below:
+Create environment file for project by rename *source.env* to *.env* by using command below:
 
 ```bash
 cp sources.env .env
