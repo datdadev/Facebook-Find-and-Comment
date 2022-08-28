@@ -1,4 +1,4 @@
-# Auto-Find-and-Comment
+# Facebook-Find-and-Comment
 ## About
 ### Why did I create this project?
 In oder to advertsing purpose on Facebook, I decided to start this project.
