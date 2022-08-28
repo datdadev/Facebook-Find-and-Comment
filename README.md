@@ -17,5 +17,9 @@ pip install -r requirements.txt
 ```bash
 cp sources.env .env
 ```
+- Setup environment variables:
+  - FACEBOOK_LOGIN = your Facebook login
+  - FACEBOOK_PASSWORD = your Facebook password
+  - REFRESH_TIME = time to refresh Facebook page for new posts
 ## UPDATE
 The project will be update occasionally when I'm free.
