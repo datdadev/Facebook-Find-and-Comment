@@ -75,7 +75,6 @@ class Facebook:
                         urls.append(cmt_url)
                         text_found = False
         for url in urls:
-            print(url)
             self.wdr.get(url)
             self.comment()
         self.wdr.get(more_stories)
