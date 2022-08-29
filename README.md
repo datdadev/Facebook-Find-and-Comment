@@ -2,6 +2,10 @@
 ## ABOUT
 ### Why did I create this project?
 In order to advertsing purpose on Facebook posts, I decided to start this project.
+### Features
+- Auto login your Facebook account and save cookies for the next login.
+- Comment string including texts and special icons.
+- Fast and easy to setup.
 ### How it works?
 The program will read the page's html and find the content of each post if it contains matched texts from [textFiles/regex_find.txt](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/textFiles/regex_find.txt).
 If it does, the program will comment [textFiles/comment.txt](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/textFiles/comment.txt) and post it automatically.
