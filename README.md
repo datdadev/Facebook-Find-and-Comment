@@ -16,10 +16,10 @@ Install project's dependencies in [requirements.txt](https://github.com/datdadev
 ```bash
 pip install -r requirements.txt
 ```
-Create environment file for project by rename *source.env* to *.env*:
+Create environment file for project by rename *resource.env* to *.env*:
 
 ```bash
-cp sources.env .env
+cp resources.env .env
 ```
 Setup environment variables:
 - FACEBOOK_LOGIN = your Facebook login
