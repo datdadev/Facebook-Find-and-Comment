@@ -24,7 +24,7 @@ Setup environment variables:
 
 Edit text files:
 
-- [textFiles/regex_find.txt](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/textFiles/regex_find.txt): string from regex format that you want to find
+- [textFiles/regex_find.txt](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/textFiles/regex_find.txt): string in regex format that you want to find
 - [textFiles/comment.txt](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/textFiles/comment.txt): texts (including special icon) that you want to comment
 ## UPDATE
 The project will be update occasionally when I'm free.
