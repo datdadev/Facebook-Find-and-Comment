@@ -1,5 +1,6 @@
 from http.cookies import Morsel
 import sys
+from tabnanny import check
 from selenium import webdriver as wdr
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -8,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
 import os
+import json
 import pickle
 import re
 import pyperclip
@@ -52,21 +54,48 @@ class Facebook:
             html = self.wdr.find_element_by_xpath("//html").get_attribute('outerHTML')
             with open('./textFiles/file.txt', 'wb') as out:
                 out.write(html2text.html2text(str(html)).encode('utf-8'))
-            print("Page loaded!")
+            #print("Page loaded!")
         except TimeoutException:
             print("Loading took too much time! Check your account!")
             sys.exit()
     
-    def comment_and_next(self):
+    def check_and_save_commentedPosts(self, regex_texts, urls):
+        definedUrls = []
+        matched_indexUrl = []
+        if os.path.getsize('commentedPosts.json') != 0:
+            with open('commentedPosts.json', 'r') as f:
+                definedUrls = json.load(f)
+            for indexUrl, url in enumerate(urls):
+                textFound = False
+                for i in range(0, len(definedUrls)):
+                    if (url == definedUrls[i]["Url"]):
+                        textFound = True
+                        matched_indexUrl.append(indexUrl)
+                        break
+                if textFound == False:
+                    definedUrls.append({"Text": regex_texts[indexUrl], "Url": url})
+            for i in range(len(matched_indexUrl)-1, -1, -1):
+                urls.remove(urls[matched_indexUrl[i]])
+        else:
+            for i in range(len(urls)):
+                definedUrls.append({"Text": regex_texts[i], "Url": urls[i]})
+        json_object = json.dumps(definedUrls, indent=4)
+        with open('commentedPosts.json', 'w') as f:
+            f.write(json_object)
+        return urls
+    
+    def comment(self):
         text_found = False
+        regex_texts = []
         urls = []
         with open('./textFiles/regex_find.txt', 'r') as str:
             text_to_find = str.read()
         with open('./textFiles/file.txt', 'r') as file:
-            more_stories = self.get_stories()
             for line in file.readlines():
                 if text_found == False:
                     if re.search(text_to_find, line):
+                        text = re.search(text_to_find, line).group()
+                        regex_texts.append(text)
                         text_found = True
                 else:
                     if re.search("Comment(s)?\]\(+(.)+\)", line):
@@ -74,12 +103,14 @@ class Facebook:
                         cmt_url = re.sub("Comment(s)?]\(", "", comment_finder.strip(")"))
                         urls.append(cmt_url)
                         text_found = False
-        for url in urls:
-            self.wdr.get(url)
-            self.comment()
-        self.wdr.get(more_stories)
+        if urls: #List is not empty!
+            filteredUrls = self.check_and_save_commentedPosts(regex_texts, urls)
+            if filteredUrls: #FilteredList is not empty!
+                for url in filteredUrls:
+                    self.wdr.get(url)
+                    self.comment_click()
     
-    def comment(self):
+    def comment_click(self):
         with open('./textFiles/comment.txt', 'r') as post_file:
             all_lines = post_file.readlines()
             post = ''.join([str(line) for line in all_lines])
@@ -92,24 +123,32 @@ class Facebook:
             print("Commented!")
     
     def get_stories(self):
-        with open('./textFiles/file.txt', 'r') as file:
-            str = file.read()
-            next_posts = r"https://mbasic.facebook.com"+re.findall("\/stories+.+\)", str)[0].strip(")")
-            return next_posts
+        try:
+            with open('./textFiles/file.txt', 'r') as file:
+                str = file.read()
+                next_posts = r"https://mbasic.facebook.com"+re.findall("\/stories+.+\)", str)[0].strip(")")
+                return next_posts
+        except:
+            print("No more post!")
+            self.wdr.quit()
+            sys.exit()
     
     def looping(self):
         for i in range(-1, self.refresh_time):
+            print("Attempt {0}".format(i+1))
             self.current_url_to_text()
             try:
-                self.comment_and_next()
+                self.comment()
             except:
-                self.wdr.get(self.get_stories())
+                pass
+            self.wdr.get(self.get_stories())
+        print("Finished!")
     
     def run(self):
         self.login_facebook()
         self.close_save_device_page()
         self.looping()
         
-        self.wdr.close()
+        self.wdr.quit()
         
     
