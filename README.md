@@ -5,6 +5,7 @@ In order to advertsing purpose on Facebook posts, I decided to start this projec
 ### Features
 - Auto login your Facebook account and save cookies for the next login.
 - Comment string including texts and special icons.
+- Will not comment already commented posts.
 - Fast and easy to setup.
 ### How it works?
 The program will read the page's html and find the content of each post if it contains matched texts from [textFiles/regex_find.txt](https://github.com/datdadev/Facebook-Find-and-Comment/blob/main/textFiles/regex_find.txt).
