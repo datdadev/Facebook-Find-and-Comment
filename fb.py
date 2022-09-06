@@ -135,7 +135,7 @@ class Facebook:
     
     def looping(self):
         for i in range(-1, self.refresh_time):
-            print("Attempt {0}".format(i+1))
+            print("Attempt {0}".format(i+2))
             self.current_url_to_text()
             try:
                 self.comment()
