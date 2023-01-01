@@ -1,7 +1,7 @@
 # Facebook-Find-and-Comment
 ## ABOUT
 ### Why did I create this project?
-In order to advertsing purpose on Facebook posts, I decided to start this project.
+In order for the advertsing purpose on Facebook posts, I decided to start this project.
 ### Features
 - Auto login your Facebook account and save cookies for the next login.
 - Comment string including texts and special icons.
